@@ -1,0 +1,40 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: salt_solo
+  is_file_root: true
+  salt_copy_filter:
+    - .kitchen
+    - .git
+  state_top:
+    base:
+      "*":
+        - test.mockup
+        - kibana
+
+platforms:
+  - name: bento/debian-8
+
+suites:
+  - name: default
+    provisioner:
+      pillars:
+        top.sls:
+          base:
+            '*':
+              - kibana
+        kibana.sls:
+          kibana:
+            enabled: true
+
+  - name: custom
+    provisioner:
+      pillars-from-files:
+        kibana.sls: pillar_custom.sls
+      pillars:
+        top.sls:
+          base:
+            "*":
+              - kibana

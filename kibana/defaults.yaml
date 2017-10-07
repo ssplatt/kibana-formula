@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+kibana:
+  enabled: False
+  pkg: kibana
+  service:
+    name: kibana
+    state: dead
+    enable: False
