@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-describe command('/usr/share/kibana/bin/kibana-plugin list') do
-  its(:stdout) { should match /x-pack/ }
-end
-
 describe file('/etc/kibana/kibana.yml') do
   it { should exist }
   it { should be_mode 644 }
@@ -12,13 +8,13 @@ describe file('/etc/kibana/kibana.yml') do
   its(:content) { should match /^elasticsearch\.url: https:\/\/localhost:9200/ }
   its(:content) { should match /^elasticsearch\.password: pass/ }
   its(:content) { should match /^elasticsearch\.ssl\.ca: \/etc\/pki\/test_ca\/test_ca_ca_cert\.crt/ }
-  its(:content) { should match /^elasticsearch\.ssl\.cert: \/etc\/pki\/test_ca\/certs\/kibana\.crt/ }
+  its(:content) { should match /^elasticsearch\.ssl\.certificate: \/etc\/pki\/test_ca\/certs\/kibana\.crt/ }
   its(:content) { should match /^elasticsearch\.ssl\.key: \/etc\/pki\/test_ca\/certs\/kibana\.key/ }
   its(:content) { should match /^elasticsearch\.ssl\.verify: true/ }
   its(:content) { should match /^elasticsearch\.username: user/ }
   its(:content) { should match /^server\.host: 0\.0\.0\.0/ }
   its(:content) { should match /^server\.port: 5601/ }
-  its(:content) { should match /^server\.ssl\.cert: \/etc\/pki\/test_ca\/certs\/kibana\.crt/ }
+  its(:content) { should match /^server\.ssl\.certificate: \/etc\/pki\/test_ca\/certs\/kibana\.crt/ }
   its(:content) { should match /^server\.ssl\.key: \/etc\/pki\/test_ca\/certs\/kibana\.key/ }
 end
 
